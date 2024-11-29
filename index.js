@@ -5,6 +5,7 @@ const PORT = process.env.PORT || 3000;
 const { dbConnection } = require("./config/db")
 const routerApi = require("./routes/routesAPI")
 const path = require('path');
+const cors = require('cors');
 
 
 
@@ -12,6 +13,8 @@ const path = require('path');
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors());
+
 
 app.use('/', routerApi);
 
