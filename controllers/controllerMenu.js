@@ -4,8 +4,8 @@ const moment = require("moment");
 const MenuController = {
     async showMenu(req, res) {
         try {
-            const semanaActual = `Semana ${moment().isoWeek()} - ${moment().year()}`;
-            const menu = await WeekMenu.findOne({ semana: semanaActual });
+            const currentWeek = `Week ${moment().isoWeek()} - ${moment().year()}`;
+            const menu = await WeekMenu.findOne({ week: currentWeek });
             if (!menu) {
                 return res.status(404).send({ message: "Menu not found" });
             }
@@ -17,23 +17,23 @@ const MenuController = {
     },
     async createOrUpdateMenu(req, res) {
         try {
-          const semanaActual = `Semana ${moment().isoWeek()} - ${moment().year()}`;
-          const { dias } = req.body;
+          const currentWeek = `Week ${moment().isoWeek()} - ${moment().year()}`;
+          const { days } = req.body;
       
-          if (!dias || !Array.isArray(dias) || dias.length !== 7) {
+          if (!days || !Array.isArray(days) || days.length !== 7) {
             return res.status(400).json({ message: "The menu most have at least 1 meal per day every day" });
           }
       
-          for (const dia of dias) {
-            if (!dia.desayuno && !dia.almuerzo && !dia.cena) {
+          for (const day of days) {
+            if (!day.breakfast && !day.lunch && !day.dinner) {
               return res.status(400).json({ 
-                message: `The day ${dia.dia} most have at least one meal` 
+                message: `The day ${day.day} most have at least one meal` 
               });
             }
           }
           const menu = await WeekMenu.findOneAndUpdate(
-            { semana: semanaActual },
-            { semana: semanaActual, dias },
+            { week: currentWeek },
+            { week: currentWeek, days },
             { new: true, upsert: true }
           );
       
@@ -45,10 +45,10 @@ const MenuController = {
       },      
     async resetMenu(req, res) {
         try {
-            const semanaActual = `Semana ${moment().isoWeek()} - ${moment().year()}`;
+            const currentWeek = `Week ${moment().isoWeek()} - ${moment().year()}`;
             const resetMenu = await WeekMenu.findOneAndUpdate(
-                { semana: semanaActual }, 
-                { dias: [] }, 
+                { week: currentWeek }, 
+                { days: [] }, 
                 { new: true } 
             );
 

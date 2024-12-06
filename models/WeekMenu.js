@@ -1,21 +1,21 @@
 const mongoose = require('mongoose');
 
-const ComidaSchema = new mongoose.Schema({
-    comida: { type: String, required: true },
+const MealSchema = new mongoose.Schema({
+    meal: { type: String, required: true },
 }, { _id: false });
 
-const DiaMenuSchema = new mongoose.Schema({
-    dia: { type: String, required: true, enum: ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'] },
-    desayuno: ComidaSchema,
-    almuerzo: ComidaSchema,
-    cena: ComidaSchema
+const DayMenuSchema = new mongoose.Schema({
+    day: { type: String, required: true, enum: ['monday', 'tuesday', 'wednesday', 'jueves', 'friday', 'saturday', 'sunday'] },
+    breakfast: MealSchema,
+    lunch: MealSchema,
+    dinner: MealSchema
 }, { _id: false });
 
-const MenuSemanalSchema = new mongoose.Schema({
-    semana: { type: String, required: true, unique: true }, 
-    dias: [DiaMenuSchema]
+const WeekMenuSchema = new mongoose.Schema({
+    week: { type: String, required: true, unique: true }, 
+    days: [DayMenuSchema]
 }, { timestamps: true });
 
-const MenuSemanal = mongoose.model('MenuSemanal', MenuSemanalSchema);
+const WeekMenu = mongoose.model('WeekMenu', WeekMenuSchema);
 
-module.exports = MenuSemanal;
+module.exports = WeekMenu;
