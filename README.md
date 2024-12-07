@@ -15,6 +15,9 @@ Crear o actualizar menús semanales con comidas específicas para cada día.
 Restablecer el menú semanal.
 Obtener el menú de la semana actual.
 
+### Repositorio de frontend asociado a este repositorio: 
+-> https://github.com/dem116/fullstack-project-front
+
 ### Tecnologías y Librerías Utilizadas
 Backend:
 Node.js: Plataforma principal.
@@ -119,6 +122,7 @@ Cuerpo de la solicitud:
 Restablece el menú de la semana actual eliminando todas las comidas.
 Respuesta:
 { "message": "Menu reseted", "resetMenu": { "week": "string", "days": [] } }
+
 
 ## Instrucciones de Configuración
 
