@@ -30,7 +30,7 @@ CORS: Permitir solicitudes desde diferentes orígenes.
 
 
 ### Estructura de Archivos
-
+```
 fullstack-project/
 ├── config/
 │   └── db.js                 # Configuración de la base de datos
@@ -47,31 +47,35 @@ fullstack-project/
 ├── package.json              # Información del proyecto y dependencias
 ├── .env                      # Variables de entorno (no incluido por seguridad)
 └── README.md                 # Documentación del proyecto
+```
 
 ## Modelos
 
 ### ItemLista 
+```
 {
   "item": "string" // Nombre del ítem (requerido)
 }
-
+```
 
 ### WeekMenu
+```
 {
   "week": "string",   // Identificador único basado en la semana del año
   "days": [
     {
       "day": "string",        // Día de la semana
-      "breakfast": { "meal": "string" }, // (Opcional) Desayuno
-      "lunch": { "meal": "string" },     // (Opcional) Almuerzo
-      "dinner": { "meal": "string" }     // (Opcional) Cena
+      "breakfast": { "meal": "string" }, 
+      "lunch": { "meal": "string" },    
+      "dinner": { "meal": "string" }    
     }
   ]
 }
+```
 
 ## Endpoints y Funcionalidades
 
-### Ítems de la Lista de Compras
+### Lista de Compras
 
 -GET /items
 Devuelve todos los ítems de la lista.
@@ -93,7 +97,7 @@ Cuerpo de la solicitud:
 -DELETE /item/delete/:itemId
 Elimina un ítem existente por su ID.
 
--Menú Semanal
+### Menú Semanal
 GET /menu
 Devuelve el menú de la semana actual.
 Respuesta:
@@ -145,6 +149,8 @@ El servidor estará disponible en http://localhost:3000.
 
 
 ## Proximas implementaciones
+```
 -Implementar autenticación de usuarios a través de firebase y que los datos esten asociados a cada usario (una lista y menu propios para cada usuario)
 -Ruta para editar items en el front end, en conjunto con más datos para cada item como: cantidad y/o descripción
 -Endpoinst y modelos para crear recetas y automatizaciones para que los ingredientes se agreguen automaticamente a la lista de compra.
+```
